@@ -1,0 +1,59 @@
+=== Pre requisite before installing mini kube.
+
+To check if virtualization is supported on macOS, run the following command on your terminal.
+
+[source,bash]
+----
+sysctl -a | grep -E --color 'machdep.cpu.features|VMX' 
+----
+
+If you see VMX in the output (should be colored), the VT-x feature is enabled in your machine.
+
+=== Install Minikube
+The easiest way to install Minikube on macOS is using Homebrew:
+
+[source,bash]
+----
+brew install minikube
+----
+
+=== Validate the installed minkube version
+
+[source,bash]
+----
+minikube version
+----
+
+==== minikube commands
+
+[source,bash]
+----
+
+minikube start
+
+minikube start --vm-driver=<driver_name>
+
+minikube stop
+
+minikube delete
+
+----
+
+==== Kube ctl commands
+
+[source,bash]
+----
+
+kubectl get services
+
+kubectl get pods
+
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
+
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+kubectl delete services hello-minikube
+
+kubectl delete deployment hello-minikube
+
+----
